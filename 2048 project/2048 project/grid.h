@@ -14,6 +14,10 @@ public:
 
 	//void createTableC(int grid[size_gridC][size_gridC]);
 
+
+
+
+
 	void moveUpC(int grid[size_gridC][size_gridC]);
 	void moveDownC(int grid[size_gridC][size_gridC]);
 	void moveLeftC(int grid[size_gridC][size_gridC]);
