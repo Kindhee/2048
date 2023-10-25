@@ -68,4 +68,5 @@ int main()
     std::cout << "You lost" << std::endl;
     std::cout << "end of game" << std::endl;
     std::cout << std::endl;
+    // slt
 }
