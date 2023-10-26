@@ -4,7 +4,13 @@
 #include <list>
 using namespace std;
 
-Grid::Grid(int grid[size_gridC][size_gridC]) {
+Grid::Grid(int x, int y) {
+
+    grid.resize(x);
+    for(int i = 0; i < x; ++i)
+    {
+        grid.resize(y);
+    }
 
     starting = 2;
 
@@ -36,13 +42,18 @@ Grid::Grid(int grid[size_gridC][size_gridC]) {
     }
 }
 
+Grid::Grid(std::vector<std::vector<int>> config) {
+
+    grid = config;
+}
+
 int Grid::randomNumberC(int number){
     int randomnumber;
     randomnumber = rand() % number;
     return(randomnumber);
 }
 
-bool Grid::testInGridC(int grid[size_gridC][size_gridC], int i, int j) {
+bool Grid::testInGridC(int i, int j) {
     if (i > 3 || i < 0 || j>3 || j < 0) {
         return false;
     }
@@ -51,7 +62,7 @@ bool Grid::testInGridC(int grid[size_gridC][size_gridC], int i, int j) {
     }
 }
 
-void Grid::moveUpC(int grid[size_gridC][size_gridC]) {
+void Grid::moveUpC() {
     list<int> list_col{};
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
@@ -65,7 +76,7 @@ void Grid::moveUpC(int grid[size_gridC][size_gridC]) {
         for (int l = 0; l < size_gridC; l++) {
             grid[l][i] = list_col.front();
             list_col.pop_front();
-            if (testInGridC(grid, i, l - 1) == true && grid[l - 1][i] == grid[l][i]) {
+            if (testInGridC(i, l - 1) == true && grid[l - 1][i] == grid[l][i]) {
                 grid[l - 1][i] += grid[l][i];
                 grid[l][i] = 0;
             }
@@ -81,7 +92,7 @@ void Grid::moveUpC(int grid[size_gridC][size_gridC]) {
     }
 }
 
-void Grid::moveDownC(int grid[size_gridC][size_gridC]) {
+void Grid::moveDownC() {
     list<int> list_col{};
     for (int i = 0; i < 4; ++i) {
         for (int j = 3; j > -1; --j) {
@@ -95,7 +106,7 @@ void Grid::moveDownC(int grid[size_gridC][size_gridC]) {
         for (int l = 3; l > -1; l--) {
             grid[l][i] = list_col.front();
             list_col.pop_front();
-            if (testInGridC(grid, i, l + 1) == true && grid[l + 1][i] == grid[l][i]) {
+            if (testInGridC(i, l + 1) == true && grid[l + 1][i] == grid[l][i]) {
                 grid[l + 1][i] += grid[l][i];
                 grid[l][i] = 0;
             }
@@ -111,7 +122,7 @@ void Grid::moveDownC(int grid[size_gridC][size_gridC]) {
     }
 }
 
-void Grid::moveLeftC(int grid[size_gridC][size_gridC]) {
+void Grid::moveLeftC() {
     list<int> list_col{};
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
@@ -125,7 +136,7 @@ void Grid::moveLeftC(int grid[size_gridC][size_gridC]) {
         for (int l = 0; l < size_gridC; l++) {
             grid[i][l] = list_col.front();
             list_col.pop_front();
-            if (testInGridC(grid, i, l - 1) == true && grid[i][l - 1] == grid[i][l]) {
+            if (testInGridC(i, l - 1) == true && grid[i][l - 1] == grid[i][l]) {
                 grid[i][l - 1] += grid[i][l];
                 grid[i][l] = 0;
             }
@@ -141,7 +152,7 @@ void Grid::moveLeftC(int grid[size_gridC][size_gridC]) {
     }
 }
 
-void Grid::moveRightC(int grid[size_gridC][size_gridC]) {
+void Grid::moveRightC() {
     list<int> list_col{};
     for (int i = 0; i < 4; ++i) {
         for (int j = 3; j > -1; --j) {
@@ -155,7 +166,7 @@ void Grid::moveRightC(int grid[size_gridC][size_gridC]) {
         for (int l = 3; l > -1; l--) {
             grid[i][l] = list_col.front();
             list_col.pop_front();
-            if (testInGridC(grid, i, l + 1) == true && grid[i][l + 1] == grid[i][l]) {
+            if (testInGridC(i, l + 1) == true && grid[i][l + 1] == grid[i][l]) {
                 grid[i][l + 1] += grid[i][l];
                 grid[i][l] = 0;
             }
@@ -171,7 +182,7 @@ void Grid::moveRightC(int grid[size_gridC][size_gridC]) {
     }
 }
 
-int Grid::newTilesC(int grid[size_gridC][size_gridC]) {
+int Grid::newTilesC() {
     int count = 0, count_random = 0;
     int random_coord;
     for (int i = 0; i < size_gridC; ++i) {
@@ -209,7 +220,7 @@ int Grid::newTilesC(int grid[size_gridC][size_gridC]) {
     return 1;
 }
 
-bool Grid::testLooseC(int grid[size_gridC][size_gridC], int zero) {
+bool Grid::testLooseC(int zero) {
     if (zero == 1) {
         return false;
     }
@@ -227,7 +238,7 @@ bool Grid::testLooseC(int grid[size_gridC][size_gridC], int zero) {
     return true;
 }
 
-void Grid::showTableC(int grid[size_gridC][size_gridC]) {
+void Grid::showTableC() {
 
     for (int j = 0; j < 4; ++j)
     {
@@ -251,3 +262,18 @@ void Grid::showTableC(int grid[size_gridC][size_gridC]) {
     }
 }
 
+
+bool Grid::Compare(std::vector<std::vector<int>> result)
+{
+    for(int x = 0; x < size_gridC; ++x)
+    {
+        for (int y = 0; y < size_gridC; ++y)
+        {
+            if (grid[x][y] != result[x][y])
+            {
+                return false
+            }
+        }
+    }
+    return true
+}

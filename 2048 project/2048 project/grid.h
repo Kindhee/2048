@@ -1,28 +1,37 @@
 
 const int size_gridC = 4;
 
+#include <vector>
+
 class Grid
 {
+private:
+	int i;
+	std::vector<std::vector<int>> grid;
 
 public:
-
+	//attributes
 	int starting;
 
-	Grid(int grid[size_gridC][size_gridC]);
+	//methods
+	Grid(int x, int y);
+	
+	Grid(std::vector<std::vector<int>> s);
 
 	int randomNumberC(int number);
 
-	void moveUpC(int grid[size_gridC][size_gridC]);
-	void moveDownC(int grid[size_gridC][size_gridC]);
-	void moveLeftC(int grid[size_gridC][size_gridC]);
-	void moveRightC(int grid[size_gridC][size_gridC]);
+	void moveUpC();
+	void moveDownC();
+	void moveLeftC();
+	void moveRightC();
 
-	int newTilesC(int grid[size_gridC][size_gridC]);
+	int newTilesC();
 
-	bool testInGridC(int grid[size_gridC][size_gridC], int i, int j);
-	bool testLooseC(int grid[size_gridC][size_gridC], int zero);
+	bool testInGridC(int i, int j);
+	bool testLooseC(int zero);
 
-	void showTableC(int grid[size_gridC][size_gridC]);
+	void showTableC();
+
+	bool Compare(std::vector<std::vector<int>> result);
 
 };
-

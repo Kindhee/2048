@@ -2,14 +2,24 @@
 #include "time.h"
 #include <list>
 #include "grid.h"
+#include "2048 test.h"
+
 using namespace std;
 
+void Tests()
+{
+    TestIntegration oTestIntegration;
+    oTestIntegration.Test_Move_Up_Min_Range();
+    oTestIntegration.Test2();
+}
 
 int main()
 {
-    int grid[size_gridC][size_gridC];
+    Tests();
 
-    Grid my_grid(grid);
+
+    ///
+    Grid my_grid(4, 4 );
 
     char player_input;
     int end_of_game = 0;
@@ -20,9 +30,9 @@ int main()
 
         system("cls");
         valid_play = 0;
-        my_grid.showTableC(grid);
+        my_grid.showTableC();
 
-        if (my_grid.testLooseC(grid, zero) == true) {
+        if (my_grid.testLooseC(zero) == true) {
             end_of_game = 1;
         }
 
@@ -37,22 +47,22 @@ int main()
         switch (player_input) {
 
             case 'z':
-                my_grid.moveUpC(grid);
+                my_grid.moveUpC();
                 valid_play = 1;
                 break;
 
             case 'q':
-                my_grid.moveLeftC(grid);
+                my_grid.moveLeftC();
                 valid_play = 1;
                 break;
 
             case 's':
-                my_grid.moveDownC(grid);
+                my_grid.moveDownC();
                 valid_play = 1;
                 break;
 
             case 'd':
-                my_grid.moveRightC(grid);
+                my_grid.moveRightC();
                 valid_play = 1;
                 break;
 
@@ -61,7 +71,7 @@ int main()
 
         }
         if (valid_play == 1) {
-            zero = my_grid.newTilesC(grid);
+            zero = my_grid.newTilesC();
         }
     }
     std::cout << std::endl;
@@ -70,3 +80,4 @@ int main()
     std::cout << std::endl;
     // slt
 }
+
