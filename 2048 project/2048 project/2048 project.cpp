@@ -14,10 +14,30 @@ void Tests()
     oTestIntegration.Test_Move_Left_Min_Range();
     oTestIntegration.Test_Move_Right_Min_Range();
 
+    std::cout << "-------------------------------" << std::endl;
+
+    oTestIntegration.Test_Move_Up_Max_Range();
+    oTestIntegration.Test_Move_Down_Max_Range();
+    oTestIntegration.Test_Move_Left_Max_Range();
+    oTestIntegration.Test_Move_Right_Max_Range();
+
+    std::cout << "-------------------------------" << std::endl;
+
     oTestIntegration.Test_Fusion_Up_Min_Range();
     oTestIntegration.Test_Fusion_Down_Min_Range();
     oTestIntegration.Test_Fusion_Left_Min_Range();
     oTestIntegration.Test_Fusion_Right_Min_Range();
+
+    std::cout << "-------------------------------" << std::endl;
+
+    oTestIntegration.Test_Fusion_Up_Max_Range();
+    oTestIntegration.Test_Fusion_Down_Max_Range();
+    oTestIntegration.Test_Fusion_Left_Max_Range();
+    oTestIntegration.Test_Fusion_Right_Max_Range();
+
+    std::cout << "-------------------------------" << std::endl;
+
+
 }
 
 void Game() 
@@ -88,8 +108,8 @@ void Game()
 
 int main()
 {
-    Tests();
+    //Tests();
 
-    //Game();
+    Game();
 }
 

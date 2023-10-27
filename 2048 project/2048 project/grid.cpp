@@ -261,6 +261,7 @@ void Grid::showTableC() {
 }
 
 
+
 bool Grid::Compare(std::vector<std::vector<int>> result)
 {
     for(int x = 0; x < size_gridC; ++x)
