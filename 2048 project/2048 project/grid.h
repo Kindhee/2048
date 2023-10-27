@@ -6,7 +6,6 @@ const int size_gridC = 4;
 class Grid
 {
 private:
-	int i;
 	std::vector<std::vector<int>> grid;
 
 public:
@@ -33,5 +32,7 @@ public:
 	void showTableC();
 
 	bool Compare(std::vector<std::vector<int>> result);
+
+	bool AreEqual(int i1, int j1, int i2, int j2);
 
 };

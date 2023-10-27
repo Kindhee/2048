@@ -10,23 +10,28 @@ void Tests()
 {
     TestIntegration oTestIntegration;
     oTestIntegration.Test_Move_Up_Min_Range();
-    oTestIntegration.Test2();
+    oTestIntegration.Test_Move_Down_Min_Range();
+    oTestIntegration.Test_Move_Left_Min_Range();
+    oTestIntegration.Test_Move_Right_Min_Range();
+
+    oTestIntegration.Test_Fusion_Up_Min_Range();
+    oTestIntegration.Test_Fusion_Down_Min_Range();
+    oTestIntegration.Test_Fusion_Left_Min_Range();
+    oTestIntegration.Test_Fusion_Right_Min_Range();
 }
 
-int main()
+void Game() 
 {
-    Tests();
-
 
     ///
-    Grid my_grid(4, 4 );
+    Grid my_grid(4, 4);
 
     char player_input;
     int end_of_game = 0;
     int valid_play;
     int zero = 0;
 
-    while (end_of_game == 0){
+    while (end_of_game == 0) {
 
         system("cls");
         valid_play = 0;
@@ -46,28 +51,28 @@ int main()
         std::cin >> player_input;
         switch (player_input) {
 
-            case 'z':
-                my_grid.moveUpC();
-                valid_play = 1;
-                break;
+        case 'z':
+            my_grid.moveUpC();
+            valid_play = 1;
+            break;
 
-            case 'q':
-                my_grid.moveLeftC();
-                valid_play = 1;
-                break;
+        case 'q':
+            my_grid.moveLeftC();
+            valid_play = 1;
+            break;
 
-            case 's':
-                my_grid.moveDownC();
-                valid_play = 1;
-                break;
+        case 's':
+            my_grid.moveDownC();
+            valid_play = 1;
+            break;
 
-            case 'd':
-                my_grid.moveRightC();
-                valid_play = 1;
-                break;
+        case 'd':
+            my_grid.moveRightC();
+            valid_play = 1;
+            break;
 
-            default:
-                break;
+        default:
+            break;
 
         }
         if (valid_play == 1) {
@@ -79,5 +84,12 @@ int main()
     std::cout << "end of game" << std::endl;
     std::cout << std::endl;
     // slt
+}
+
+int main()
+{
+    Tests();
+
+    //Game();
 }
 

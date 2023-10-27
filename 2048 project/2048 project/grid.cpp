@@ -1,7 +1,11 @@
 #include "grid.h"
+
 #include <iostream>
 #include "time.h"
 #include <list>
+
+#include "tools.h"
+
 using namespace std;
 
 Grid::Grid(int x, int y) {
@@ -9,7 +13,7 @@ Grid::Grid(int x, int y) {
     grid.resize(x);
     for(int i = 0; i < x; ++i)
     {
-        grid.resize(y);
+        grid[i].resize(y);
     }
 
     starting = 2;
@@ -25,7 +29,6 @@ Grid::Grid(int x, int y) {
     }
 
     int test_starting_tiles;
-    int x, y;
 
     for (int i = 0; i < starting; ++i) {
 
@@ -229,7 +232,8 @@ bool Grid::testLooseC(int zero) {
         {
             for (int i = 0; i < 4; ++i)
             {
-                if (grid[i][j - 1] == grid[i][j] || grid[i - 1][j] == grid[i][j] || grid[i + 1][j] == grid[i][j] || grid[i][j + 1] == grid[i][j]) {
+                if (AreEqual(i,j,i,j-1) == true || AreEqual(i,j,i-1,j) == true || AreEqual(i,j,i+1,j) == true || AreEqual(i,j,i,j+1) == true)
+                {
                     return false;
                 }            
             }
@@ -238,28 +242,22 @@ bool Grid::testLooseC(int zero) {
     return true;
 }
 
-void Grid::showTableC() {
-
-    for (int j = 0; j < 4; ++j)
+bool Grid::AreEqual(int i1, int j1, int i2, int j2) 
+{
+    if (testInGridC(i1, j1) == false || testInGridC(i2, j2) == false || grid[i1][j1] != grid[i2][j2])
     {
-        for (int i = 0; i < 4; ++i)
-        {
-            if (grid[j][i] < 10) {
-                std::cout << "   " << grid[j][i] << "  ";
-            } else if (grid[j][i] > 10 && grid[j][i] < 100) {
-                std::cout << "   " << grid[j][i] << " ";
-            } else if (grid[j][i] > 100 && grid[j][i] < 1000) {
-                std::cout << "  " << grid[j][i] << " ";
-            } else if (grid[j][i] > 1000 && grid[j][i] < 10000) {
-                std::cout << " " << grid[j][i] << " ";
-            } else if (grid[j][i] > 10000 && grid[j][i] < 100000) {
-                std::cout << " " << grid[j][i] << "";
-            } else {
-                std::cout << grid[j][i];
-            }
-        } 
-        std::cout << std::endl << std::endl;
+        return false;
     }
+    else 
+    {
+        return true;
+    }
+
+
+}
+
+void Grid::showTableC() {
+    Tools::showTableC_T(grid);
 }
 
 
@@ -271,9 +269,9 @@ bool Grid::Compare(std::vector<std::vector<int>> result)
         {
             if (grid[x][y] != result[x][y])
             {
-                return false
+                return false;
             }
         }
     }
-    return true
+    return true;
 }
