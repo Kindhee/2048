@@ -186,7 +186,8 @@ void Grid::moveRightC() {
 }
 
 int Grid::newTilesC() {
-    int count = 0, count_random = 0;
+    int count = 0;
+    int count_random = 0;
     int random_coord;
     for (int i = 0; i < size_gridC; ++i) {
         for (int j = 0; j < size_gridC; ++j)
@@ -201,14 +202,14 @@ int Grid::newTilesC() {
     }
 
     if (count == 1) {
-        random_coord = 1;
-    } else {
+        random_coord = 0;
+    }
+    else {
         random_coord = randomNumberC(count);
     }
     for (int i = 0; i < size_gridC; ++i) {
         for (int j = 0; j < size_gridC; ++j) {
             if (grid[i][j] == 0) {
-                count_random += 1;
                 if (count_random == random_coord) {
                     if (randomNumberC(3) == 0) {
                         grid[i][j] = 4;
@@ -217,30 +218,28 @@ int Grid::newTilesC() {
                         grid[i][j] = 2;
                     }
                 }
+                count_random += 1;
             }
         }
     }
     return 1;
 }
 
-bool Grid::testLooseC(int zero) {
-    if (zero == 1) {
-        return false;
-    }
-    else {
-        for (int j = 0; j < 4; ++j)
+bool Grid::testLooseC() {
+    for (int j = 0; j < 4; ++j) {
+        for (int i = 0; i < 4; ++i)
         {
-            for (int i = 0; i < 4; ++i)
-            {
-                if (AreEqual(i,j,i,j-1) == true || AreEqual(i,j,i-1,j) == true || AreEqual(i,j,i+1,j) == true || AreEqual(i,j,i,j+1) == true)
-                {
-                    return false;
-                }            
+            if (grid[i][j] == 0) {
+                return false;
+            }
+            if (testInGridC(i, j - 1) == true && grid[i][j - 1] == grid[i][j] || testInGridC(i - 1, j) == true && grid[i - 1][j] == grid[i][j] || testInGridC(i + 1, j) == true && grid[i + 1][j] == grid[i][j] || testInGridC(i, j + 1) == true && grid[i][j + 1] == grid[i][j]) {
+                return false;
             }
         }
     }
     return true;
 }
+
 
 bool Grid::AreEqual(int i1, int j1, int i2, int j2) 
 {

@@ -24,6 +24,8 @@ public:
     void Test_Fusion_Left_Max_Range();
     void Test_Fusion_Right_Max_Range();
 
-
-
+    void Test_No_Spawn_Up();
+    void Test_No_Spawn_Down();
+    void Test_No_Spawn_Left();
+    void Test_No_Spawn_Right();
 };

@@ -37,6 +37,13 @@ void Tests()
 
     std::cout << "-------------------------------" << std::endl;
 
+    oTestIntegration.Test_No_Spawn_Up();
+    oTestIntegration.Test_No_Spawn_Down();
+    oTestIntegration.Test_No_Spawn_Left();
+    oTestIntegration.Test_No_Spawn_Right();
+
+    std::cout << "-------------------------------" << std::endl;
+
 
 }
 
@@ -57,7 +64,7 @@ void Game()
         valid_play = 0;
         my_grid.showTableC();
 
-        if (my_grid.testLooseC(zero) == true) {
+        if (my_grid.testLooseC() == true) {
             end_of_game = 1;
         }
 
@@ -108,8 +115,8 @@ void Game()
 
 int main()
 {
-    //Tests();
+    Tests();
 
-    Game();
+    //Game();
 }
 

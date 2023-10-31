@@ -27,7 +27,7 @@ public:
 	int newTilesC();
 
 	bool testInGridC(int i, int j);
-	bool testLooseC(int zero);
+	bool testLooseC();
 
 	void showTableC();
 
